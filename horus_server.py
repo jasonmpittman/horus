@@ -29,4 +29,7 @@ class server():
             clientsocket, address = self.s.accept()
             self.logger.new_connection(address)
             print("Attempting to spin up docker container")
+            cont_name = "ssh_service"
+            cont_action = "start"
+            sub.run(["docker", cont_action, cont_name])
             
