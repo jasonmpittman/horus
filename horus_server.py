@@ -15,7 +15,7 @@ class horus_server():
     def bind(self):
         # For local testing
         # self.s.bind(("127.0.0.1", 22))
-        # For network testing
+        # For testing across the network (*.249 is Nathan's IP on the HPU network)
         self.s.bind(("10.240.224.249", 22))
 
     # Specifies the maximum number of queued connections to our "server"
@@ -27,4 +27,4 @@ class horus_server():
         while True:
             clientsocket, address = self.s.accept()
             print(f"Connection from {address} has been established!")
-            clientsocket.send(bytes("Welcome to the honeypot, bitch!", "utf-8"))
+            clientsocket.send(bytes("Welcome to the honeypot!", "utf-8"))
