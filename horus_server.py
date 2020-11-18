@@ -13,6 +13,9 @@ class horus_server():
     #           A port is a physical endpoint on a piece of hardware
     #           A socket is defined by the combination of a network address and port identifier, 0.0.0.0:321
     def bind(self):
+        # For local testing
+        # self.s.bind(("127.0.0.1", 22))
+        # For network testing
         self.s.bind(("10.240.224.249", 22))
 
     # Specifies the maximum number of queued connections to our "server"
