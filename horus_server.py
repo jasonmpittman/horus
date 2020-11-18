@@ -2,10 +2,11 @@
 import subprocess as sub
 import socket
 
-
-class horus_server():
-    def __init__(self):
+class server():
+    def __init__(self, new_logger):
+        self.debugging = False
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.logger = new_logger
 
     # Assigns a local protocal address to a certain socket, in this case 1234
     #       What is the difference between a socket and a port?
@@ -26,5 +27,6 @@ class horus_server():
     def start(self):
         while True:
             clientsocket, address = self.s.accept()
-            print(f"Connection from {address} has been established!")
-            clientsocket.send(bytes("Welcome to the honeypot!", "utf-8"))
+            self.logger.new_connection(address)
+            print("Attempting to spin up docker container")
+            
