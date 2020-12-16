@@ -8,7 +8,7 @@ class logger():
   def __init__(self):
     self.debugging = True
     self.database = "horus.db"
-    self.create_table_value = """ CREATE TABLE IF NOT EXISTS adversaries (
+    self.create_table_value = """ CREATE TABLE IF NOT EXISTS events (
                                     id text PRIMARY KEY,
                                     ip_address text NOT NULL,
                                     port text NOT NULL,
@@ -17,7 +17,7 @@ class logger():
                                   );
                               """
     self.conn = None
-    self.sql = ''' INSERT INTO adversaries(id,ip_address,port,date_arrived,times_visited)
+    self.sql = ''' INSERT INTO events(id,ip_address,port,date_arrived,times_visited)
                    VALUES(?,?,?,?,?) '''
     self.cur = None
 
