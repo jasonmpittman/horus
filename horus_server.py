@@ -15,9 +15,9 @@ class server():
     #           A socket is defined by the combination of a network address and port identifier, 0.0.0.0:321
     def bind(self):
         # For local testing
-        # self.s.bind(("127.0.0.1", 22))
+        self.s.bind(("127.0.0.1", 22))
         # For testing across the network (*.249 is Nathan's IP on the HPU network)
-        self.s.bind(("10.240.224.249", 22))
+        # self.s.bind(("10.240.224.249", 22))
 
     # Specifies the maximum number of queued connections to our "server"
     def listen(self):
@@ -27,7 +27,7 @@ class server():
     def start(self):
         while True:
             clientsocket, address = self.s.accept()
-            self.logger.new_connection(address)
+            self.logger.handle_request(address)
             print("Attempting to spin up docker container")
             cont_name = "ssh_service"
             cont_action = "start"
